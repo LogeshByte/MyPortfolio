@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World's Best Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            color: #fff;
+        }
+
+        /* Dynamic Backgrounds */
+        .weather-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: background-image 1s ease-in-out;
+        }
+        .weather-bg.sunny {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1507521628349-6e9b27515384?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+        .weather-bg.cloudy {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+        .weather-bg.rainy {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501696461415-6bd6660c6746?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+        .weather-bg.default {
+            background-image: linear-gradient(135deg, #74ebd5, #acb6e5);
+        }
+
+        /* Weather Card */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .weather-card h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .weather-card .temperature {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 10px 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .weather-card .city {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        .weather-card .description {
+            font-size: 1.2rem;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+        }
+        .weather-card .details {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        .weather-card .details div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .weather-card .details img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 50px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: #fff;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+            color: #fff;
+        }
+        .btn-search, .btn-location {
+            background: #2c3e50;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: none;
+            transition: background 0.3s;
+        }
+        .btn-search:hover, .btn-location:hover {
+            background: #34495e;
+        }
+
+        /* Weather Icon */
+        .weather-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dynamic Background -->
+    <div class="weather-bg default" id="weatherBg"></div>
+
+    <!-- Weather Card -->
+    <div class="weather-card">
+        <h1>Weather App</h1>
+        <div class="search-bar">
+            <input type="text" id="cityInput" class="form-control" placeholder="Enter city name">
+            <button class="btn btn-search" onclick="fetchWeather()">Search</button>
+            <button class="btn btn-location" onclick="fetchWeatherByLocation()">Use My Location</button>
+        </div>
+        <div class="city" id="cityName"></div>
+        <img class="weather-icon" id="weatherIcon" src="" alt="Weather Icon">
+        <div class="temperature" id="temperature"></div>
+        <div class="description" id="description"></div>
+        <div class="details">
+            <div>
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/humidity.png" alt="Humidity Icon">
+                <span id="humidity"></span>
+            </div>
+            <div>
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/wind.png" alt="Wind Icon">
+                <span id="windSpeed"></span>
+            </div>
+        </div>
+        <div class="loading" id="loading">Loading...</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const apiKey = '7ade34658a2d78af05215c8c4a586d62';
+        const cityInput = document.getElementById('cityInput');
+        const cityName = document.getElementById('cityName');
+        const temperature = document.getElementById('temperature');
+        const description = document.getElementById('description');
+        const humidity = document.getElementById('humidity');
+        const windSpeed = document.getElementById('windSpeed');
+        const weatherIcon = document.getElementById('weatherIcon');
+        const weatherBg = document.getElementById('weatherBg');
+        const loading = document.getElementById('loading');
+
+        // Fetch weather by city name
+        async function fetchWeather() {
+            const city = cityInput.value.trim();
+            if (!city) {
+                alert('Please enter a city name');
+                return;
+            }
+
+            loading.style.display = 'block';
+            try {
+                // Step 1: Geocode the city name to get latitude and longitude
+                const geocodeUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+                const geocodeResponse = await fetch(geocodeUrl);
+                const geocodeData = await geocodeResponse.json();
+
+                if (!geocodeData || geocodeData.length === 0) {
+                    alert('City not found');
+                    loading.style.display = 'none';
+                    return;
+                }
+
+                const { lat, lon, name } = geocodeData[0];
+
+                // Step 2: Fetch weather data using the Current Weather Data API
+                await fetchWeatherData(lat, lon, name);
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                alert('An error occurred while fetching weather data');
+                loading.style.display = 'none';
+            }
+        }
+
+        // Fetch weather by user's current location
+        async function fetchWeatherByLocation() {
+            if (!navigator.geolocation) {
+                alert('Geolocation is not supported by your browser');
+                return;
+            }
+
+            loading.style.display = 'block';
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    // Reverse geocode to get city name
+                    const reverseGeocodeUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
+                    const reverseGeocodeResponse = await fetch(reverseGeocodeUrl);
+                    const reverseGeocodeData = await reverseGeocodeResponse.json();
+
+                    const city = reverseGeocodeData[0]?.name || 'Your Location';
+                    await fetchWeatherData(lat, lon, city);
+                },
+                (error) => {
+                    console.error('Error getting location:', error);
+                    alert('Unable to access your location. Please allow location access or search manually.');
+                    loading.style.display = 'none';
+                }
+            );
+        }
+
+        // Fetch weather data using latitude and longitude
+        async function fetchWeatherData(lat, lon, city) {
+            try {
+                // Use the Current Weather Data API instead of One Call API
+                const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+                const weatherResponse = await fetch(weatherUrl);
+                const weatherData = await weatherResponse.json();
+
+                if (!weatherData || weatherData.cod !== 200) {
+                    alert('Unable to fetch weather data');
+                    loading.style.display = 'none';
+                    return;
+                }
+
+                // Update UI with weather data
+                cityName.textContent = city;
+                temperature.textContent = `${weatherData.main.temp.toFixed(1)}°C`;
+                description.textContent = weatherData.weather[0].description;
+                humidity.textContent = `${weatherData.main.humidity}%`;
+                windSpeed.textContent = `${weatherData.wind.speed} m/s`;
+                weatherIcon.src = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
+
+                // Update background based on weather
+                const weatherMain = weatherData.weather[0].main.toLowerCase();
+                if (weatherMain.includes('clear')) {
+                    weatherBg.className = 'weather-bg sunny';
+                } else if (weatherMain.includes('cloud')) {
+                    weatherBg.className = 'weather-bg cloudy';
+                } else if (weatherMain.includes('rain') || weatherMain.includes('drizzle')) {
+                    weatherBg.className = 'weather-bg rainy';
+                } else {
+                    weatherBg.className = 'weather-bg default';
+                }
+
+                loading.style.display = 'none';
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                alert('An error occurred while fetching weather data');
+                loading.style.display = 'none';
+            }
+        }
+
+        // Fetch weather for default location (Texarkana) on page load
+        window.onload = () => {
+            fetchWeatherData(33.44, -94.04, 'Texarkana');
+        };
+    </script>
+</body>
+</html>

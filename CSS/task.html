@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+
+        /* Task 6: Style a webpage with background color, text color, and font styles */
+        .task6-section {
+            background-color: #f0f8ff; 
+            color: #2f4f4f; 
+            font-family: 'Georgia', serif;
+            padding: 20px;
+            text-align: center;
+        }
+        .task6-section h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .task6-section p {
+            font-size: 1.2em;
+            font-style: italic;
+        }
+
+        /* Task 7: Use CSS Flexbox to create a responsive navigation menu */
+        .task7-nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #4682b4; /* Steel blue background */
+            padding: 10px;
+            flex-wrap: wrap;
+        }
+        .task7-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+        }
+        .task7-nav a:hover {
+            background-color: #5f9ea0; /* Cadet blue on hover */
+        }
+
+        /* Task 8: Use CSS Grid to create a simple 3-column layout */
+        .task8-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .task8-grid div {
+            background-color: #e6e6fa; /* Lavender background */
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        /* Task 9: Design a button with hover effects */
+        .task9-button {
+            background-color: #ff6347; /* Tomato red */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+        .task9-button:hover {
+            background-color: #ff4500; /* Orange red */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Task 10: Create a simple animation using @keyframes */
+        .task10-box {
+            width: 100px;
+            height: 100px;
+            background-color: #20b2aa; /* Light sea green */
+            position: relative;
+            animation: moveLeftToRight 3s infinite;
+        }
+        @keyframes moveLeftToRight {
+            0% {
+                left: 0;
+            }
+            50% {
+                left: calc(100% - 100px); /* Move to the right, accounting for box width */
+            }
+            100% {
+                left: 0;
+            }
+        }
+        .btn-success {
+            background-color: #28a745; /* Bootstrap success color */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="../project.html" class="btn btn-dark">Go Back</a>
+    <!-- Task 6: Style a webpage using CSS -->
+    <h2>Task 6: Style a Webpage</h2>
+    <div class="task6-section">
+        <h1>Styled Webpage</h1>
+        <p>This section has a light blue background, dark slate gray text, and Georgia font with italic style for the paragraph.</p>
+    </div>
+
+    <hr style="border: 2px solid red;">
+
+    <!-- Task 7: Use CSS Flexbox for a responsive navigation menu -->
+    <h2>Task 7: Flexbox Navigation Menu</h2>
+    <nav class="task7-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <p>This navigation menu uses Flexbox to be responsive and evenly spaced.</p>
+
+    <hr style="border: 2px solid blue;">
+
+    <!-- Task 8: Use CSS Grid for a 3-column layout -->
+    <h2>Task 8: CSS Grid 3-Column Layout</h2>
+    <div class="task8-grid">
+        <div>Column 1</div>
+        <div>Column 2</div>
+        <div>Column 3</div>
+    </div>
+
+    <hr style="border: 2px solid green;">
+
+    <!-- Task 9: Design a button with hover effects -->
+    <h2>Task 9: Button with Hover Effects</h2>
+    <button class="task9-button">Hover Me!</button>
+    <p>Hover over the button to see color change, shadow, and scale effects.</p>
+
+    <hr style="border: 2px solid purple;">
+
+    <!-- Task 10: Create a simple animation using @keyframes -->
+    <h2>Task 10: Animation with @keyframes</h2>
+    <div class="task10-box"></div>
+    <p>The box above moves from left to right continuously using @keyframes.</p>
+    <br>
+
+</body>
+</html>

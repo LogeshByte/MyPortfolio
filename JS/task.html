@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+        .container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        /* Task 16: Button styling */
+        #colorButton {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #colorButton:hover {
+            background-color: #45a049;
+        }
+        /* Task 17: Timer styling */
+        #timer {
+            font-size: 2em;
+            color: #ff4500;
+            margin: 20px 0;
+        }
+        /* Task 18: Form styling */
+        #emailForm {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #emailForm input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        #emailForm button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #emailForm button:hover {
+            background-color: #0056b3;
+        }
+        #emailError {
+            color: red;
+            margin-top: 10px;
+        }
+        /* Task 19: To-do list styling */
+        #todoInput {
+            padding: 8px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        #addTaskButton {
+            padding: 8px 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #addTaskButton:hover {
+            background-color: #218838;
+        }
+        #todoList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #todoList li {
+            padding: 10px;
+            background-color: #f8f9fa;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #todoList button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #todoList button:hover {
+            background-color: #c82333;
+        }
+        /* Task 20: Calculator styling */
+        #calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #calculator input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        #calculator select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        #calculator button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #calculator button:hover {
+            background-color: #5a6268;
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+        .btn-success {
+            background-color: #28a745; /* Bootstrap success color */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../project.html" class="btn btn-dark">Go Back</a>
+    <!-- Task 16: Create a button that changes the background color when clicked -->
+    <h2>Task 16: Change Background Color</h2>
+    <div class="container">
+        <button id="colorButton">Change Background Color</button>
+        <p>Click the button to change the background color of the page.</p>
+    </div>
+
+    <hr style="border: 2px solid red;">
+
+    <!-- Task 17: Make a countdown timer that starts from 10 and decreases every second -->
+    <h2>Task 17: Countdown Timer</h2>
+    <div class="container">
+        <div id="timer">10</div>
+        <p>The timer will start automatically and count down from 10.</p>
+    </div>
+
+    <hr style="border: 2px solid blue;">
+
+    <!-- Task 18: Validate a form to check if the email is in the correct format before submission -->
+    <h2>Task 18: Email Form Validation</h2>
+    <div class="container">
+        <form id="emailForm" onsubmit="return validateEmail()">
+            <input type="email" id="emailInput" placeholder="Enter your email" required>
+            <button type="submit">Submit</button>
+            <div id="emailError"></div>
+        </form>
+        <p>Enter an email and submit to validate its format.</p>
+    </div>
+
+    <hr style="border: 2px solid green;">
+
+    <!-- Task 19: Create a to-do list where users can add and remove tasks dynamically -->
+    <h2>Task 19: To-Do List</h2>
+    <div class="container">
+        <input type="text" id="todoInput" placeholder="Enter a task">
+        <button id="addTaskButton">Add Task</button>
+        <ul id="todoList"></ul>
+        <p>Add tasks and remove them by clicking the "Remove" button.</p>
+    </div>
+
+    <hr style="border: 2px solid purple;">
+
+    <!-- Task 20: Build a simple calculator with addition, subtraction, multiplication, and division -->
+    <h2>Task 20: Simple Calculator</h2>
+    <div class="container">
+        <div id="calculator">
+            <input type="number" id="num1" placeholder="Enter first number" required>
+            <input type="number" id="num2" placeholder="Enter second number" required>
+            <select id="operation">
+                <option value="add">Addition (+)</option>
+                <option value="subtract">Subtraction (-)</option>
+                <option value="multiply">Multiplication (×)</option>
+                <option value="divide">Division (÷)</option>
+            </select>
+            <button onclick="calculate()">Calculate</button>
+            <div id="result"></div>
+        </div>
+        <p>Enter two numbers, select an operation, and click "Calculate".</p>
+    </div>
+
+    <script>
+        // Task 16: Change background color on button click
+        document.getElementById('colorButton').addEventListener('click', function() {
+            const colors = ['#ffcccb', '#add8e6', '#90ee90', '#f0e68c', '#dda0dd'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        });
+
+        // Task 17: Countdown timer
+        let time = 10;
+        const timerElement = document.getElementById('timer');
+        const countdown = setInterval(function() {
+            time--;
+            timerElement.textContent = time;
+            if (time <= 0) {
+                clearInterval(countdown);
+                timerElement.textContent = "Time's up!";
+            }
+        }, 1000);
+
+        // Task 18: Email validation
+        function validateEmail() {
+            const emailInput = document.getElementById('emailInput').value;
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (emailPattern.test(emailInput)) {
+                emailError.textContent = "Email is valid!";
+                emailError.style.color = "green";
+                return true;
+            } else {
+                emailError.textContent = "Please enter a valid email address.";
+                emailError.style.color = "red";
+                return false;
+            }
+        }
+
+        // Task 19: To-do list
+        document.getElementById('addTaskButton').addEventListener('click', function() {
+            const taskInput = document.getElementById('todoInput');
+            const taskText = taskInput.value.trim();
+            
+            if (taskText !== "") {
+                const todoList = document.getElementById('todoList');
+                const li = document.createElement('li');
+                li.textContent = taskText;
+                
+                const removeButton = document.createElement('button');
+                removeButton.textContent = "Remove";
+                removeButton.onclick = function() {
+                    todoList.removeChild(li);
+                };
+                
+                li.appendChild(removeButton);
+                todoList.appendChild(li);
+                taskInput.value = "";
+            }
+        });
+
+        // Task 20: Calculator
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            const resultElement = document.getElementById('result');
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                resultElement.textContent = "Please enter valid numbers.";
+                return;
+            }
+
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        resultElement.textContent = "Cannot divide by zero.";
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+            }
+
+            resultElement.textContent = `Result: ${result}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Web Projects</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f4f4f9;
+        }
+        .task-section {
+            padding: 50px 0;
+            border-bottom: 2px solid #ddd;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .task-section h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        /* Task 22: Blog Layout */
+        #task22 {
+            background: #f4f4f9;
+            color: #333;
+        }
+        #task22 .header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        #task22 .header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        #task22 .sidebar {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #task22 .sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        #task22 .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #task22 .sidebar ul li {
+            margin-bottom: 8px;
+        }
+        #task22 .sidebar ul li a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        #task22 .sidebar ul li a:hover {
+            color: #e74c3c;
+        }
+        #task22 .blog-post {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        #task22 .blog-post h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        #task22 .blog-post .meta {
+            color: #777;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        #task22 .blog-post p {
+            line-height: 1.6;
+        }
+
+        /* Task 23: Modal Popup */
+        #task23 {
+            background: linear-gradient(45deg, #8e2de2, #4a00e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #task23 .btn-open-modal {
+            background: #fff;
+            color: #4a00e0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        #task23 .btn-open-modal:hover {
+            transform: scale(1.05);
+        }
+        #task23 .modal-content {
+            background: #fff;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        #task23 .modal-header {
+            background: #4a00e0;
+            color: #fff;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        #task23 .modal-body {
+            padding: 30px;
+            font-size: 1.1rem;
+        }
+        #task23 .modal-footer .btn {
+            background: #4a00e0;
+            color: #fff;
+            border: none;
+        }
+
+        /* Task 24: Image Gallery */
+        #task24 {
+            background: #f7f7f7;
+        }
+        #task24 .gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #task24 .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        #task24 .gallery img:hover {
+            transform: scale(1.05);
+        }
+        #task24 .modal-content {
+            border: none;
+            border-radius: 15px;
+        }
+        #task24 .modal-body img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Task 25: Weather App */
+        #task25 {
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #task25 .weather-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        #task25 .weather-card h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        #task25 .weather-card .temperature {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        #task25 .weather-card .city {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        #task25 .form-control {
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+        #task25 .btn-search {
+            background: #2c3e50;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Task 22: Blog Layout -->
+    <section id="task22" class="task-section">
+        <h1>Task 22: Blog Layout</h1>
+        <!-- Header -->
+        <header class="header">
+            <h1>My Blog</h1>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <div class="sidebar">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Food</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Blog Posts -->
+                <div class="col-lg-9">
+                    <div class="blog-post">
+                        <h2>The Future of Web Development</h2>
+                        <div class="meta">Posted on April 2, 2025 by John Doe</div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div class="blog-post">
+                        <h2>Exploring New CSS Features</h2>
+                        <div class="meta">Posted on March 28, 2025 by Jane Smith</div>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task 23: Modal Popup -->
+    <section id="task23" class="task-section">
+        <h1>Task 23: Modal Popup</h1>
+        <!-- Button to Trigger Modal -->
+        <button type="button" class="btn btn-open-modal" data-bs-toggle="modal" data-bs-target="#myModal23">
+            Open Modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal23" tabindex="-1" aria-labelledby="modalLabel23" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel23">Welcome to My Modal</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        This is a beautifully designed modal popup. You can add any content here, such as text, images, or forms.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Task 24: Image Gallery -->
+    <!-- Task 24: Image Gallery -->
+<section id="task24" class="task-section">
+    <h1>Task 24: Image Gallery</h1>
+    <div class="container gallery">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <img src="https://enviragallery.com/wp-content/uploads/2019/02/afterglow-art-backlit-556669.jpg" 
+                     data-bs-toggle="modal" 
+                     data-bs-target="#imageModal24" 
+                     data-src="https://enviragallery.com/wp-content/uploads/2019/02/afterglow-art-backlit-556669.jpg" 
+                     alt="Image 1">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="https://enviragallery.com/wp-content/uploads/2019/02/pexels-photo-556663.jpeg" 
+                     data-bs-toggle="modal" 
+                     data-bs-target="#imageModal24" 
+                     data-src="https://enviragallery.com/wp-content/uploads/2019/02/pexels-photo-556663.jpeg" 
+                     alt="Image 2">
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="https://enviragallery.com/wp-content/uploads/2019/02/sky-birds-cloud-orange.jpg" 
+                     data-bs-toggle="modal" 
+                     data-bs-target="#imageModal24" 
+                     data-src="https://enviragallery.com/wp-content/uploads/2019/02/sky-birds-cloud-orange.jpg" 
+                     alt="Image 3">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal24" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img id="fullImage24" src="" alt="Full Image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Task 25: Weather App -->
+    <section id="task25" class="task-section">
+        <h1>Task 25: Weather App</h1>
+        <div class="weather-card">
+            <h1>Weather App</h1>
+            <div class="mb-3">
+                <input type="text" id="cityInput25" class="form-control" placeholder="Enter city name">
+            </div>
+            <button class="btn btn-search" onclick="fetchWeather25()">Get Weather</button>
+            <div class="city mt-4" id="cityName25"></div>
+            <div class="temperature" id="temperature25"></div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Task 24: Image Gallery Script
+        const images24 = document.querySelectorAll('#task24 .gallery img');
+        const fullImage24 = document.getElementById('fullImage24');
+
+        images24.forEach(image => {
+            image.addEventListener('click', () => {
+                const src = image.getAttribute('data-src');
+                fullImage24.src = src;
+            });
+        });
+
+        // Task 25: Weather App Script
+        function fetchWeather25() {
+            const cityInput = document.getElementById('cityInput25').value;
+            const cityName = document.getElementById('cityName25');
+            const temperature = document.getElementById('temperature25');
+
+            if (!cityInput) {
+                alert('Please enter a city name');
+                return;
+            }
+
+            // Mock API response
+            const mockData = {
+                name: cityInput,
+                main: {
+                    temp: 25 // Temperature in Celsius (mocked)
+                }
+            };
+
+            cityName.textContent = mockData.name;
+            temperature.textContent = `${mockData.main.temp}°C`;
+        }
+    </script>
+</body>
+</html>
